@@ -11,20 +11,20 @@ jobs:
     steps:
       - name: Diagnóstico y Contextos
         run: |
-          echo: "${{github.actor}}"
-          echo: "${{github.ref}}"
+          echo "${{github.actor}}"
+          echo "${{github.ref}}"
       - name: Despliegue simulado
         env:
           DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
         run: |
-          echo: "Desplegando aplicación:"
-          echo: "$APP_NAME"
-          echo: "Desplegando en el ambiente:"
-          echo: "$ENVIRONMENT"
-          if [ -z"$DEPLOY_KEY" ]; then 
-            echo: "La clave fué leída con éxito."
-            echo: "${DEPLOY_KEY:0:3}***"
+          echo "Desplegando aplicación:"
+          echo "$APP_NAME"
+          echo "Desplegando en el ambiente:"
+          echo "$ENVIRONMENT"
+          if [ -z "$DEPLOY_KEY" ]; then 
+            echo "La clave fué leída con éxito."
+            echo "${DEPLOY_KEY:0:3}***"
           else
-            echo: "No se encontró el secreto."
+            echo "No se encontró el secreto."
             exit 1
           fi
