@@ -1,4 +1,4 @@
-name: prueba de flujo completo
+name: Prueba de flujo completo
 on: 
   workflow_dispatch: 
 env:
