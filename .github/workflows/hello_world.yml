@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Decir hola
-        run: echo "¡Hola! Este es mi primer workflow de GitHub Actions 🎉 Modificado"
+        run: echo "¡Hola! Este es mi primer workflow de GitHub Actions 🎉"
