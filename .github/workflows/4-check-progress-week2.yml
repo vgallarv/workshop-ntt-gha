@@ -56,13 +56,16 @@ jobs:
         id: check1
         run: |
           FILE=.github/workflows/runners.yml
+          DOLLAR='$'
           OK=true
+      
           grep -q "strategy:" "$FILE" || OK=false
           grep -q "matrix:" "$FILE" || OK=false
           grep -q "ubuntu-latest" "$FILE" || OK=false
           grep -q "windows-latest" "$FILE" || OK=false
           grep -q "macos-latest" "$FILE" || OK=false
-          grep -q "runs-on: \${{ matrix.os }}" "$FILE" || OK=false
+          grep -Fq "runs-on: ${DOLLAR}{{ matrix.os }}" "$FILE" || OK=false
+      
           echo "passed=$OK" >> "$GITHUB_OUTPUT"
 
       - name: Feedback Paso 1 — correcto, desbloquear Paso 2
@@ -80,7 +83,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           NUMBER: ${{ steps.issue.outputs.number }}
         run: |
-          gh issue comment "$NUMBER" --body "🔎 Casi. Revisa que \`runners.yml\` tenga \`strategy.matrix\` con los tres sistemas operativos (\`ubuntu-latest\`, \`windows-latest\`, \`macos-latest\`) y que \`runs-on\` use \`\${{ matrix.os }}\`."
+          DOLLAR='$'
+          gh issue comment "$NUMBER" --body "🔎 Casi. Revisa que \`runners.yml\` tenga \`strategy.matrix\` con los tres sistemas operativos (\`ubuntu-latest\`, \`windows-latest\`, \`macos-latest\`) y que \`runs-on\` use \`${DOLLAR}{{ matrix.os }}\`."
+
 
       # ---------- PASO 2 (Sesión 5): env + contexts ----------
 
