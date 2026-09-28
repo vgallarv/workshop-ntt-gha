@@ -1,0 +1,17 @@
+name: Explorando Runners
+
+on:
+  workflow_dispatch:
+
+jobs:
+  explorar:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Decir en qué sistema operativo estoy
+        run: echo "Corriendo en ${{ matrix.os }}"
+
+      - name: Ver la versión de Git preinstalada
+        run: git --version
