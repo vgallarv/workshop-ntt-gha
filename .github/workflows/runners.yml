@@ -13,5 +13,5 @@ jobs:
       - name: Decir en qué sistema operativo estoy
         run: echo "Corriendo en ${{ matrix.os }}"
 
-      - name: Ver la versión de Git preinstalada
+      - name: Ver la versión de Git preinstalada en consola
         run: git --version
