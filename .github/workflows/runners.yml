@@ -25,3 +25,6 @@ jobs:
           echo "Quién disparó el workflow: ${{ github.actor }}"
           echo "Rama: ${{ github.ref }}"
           echo "Commit: ${{ github.sha }}"
+
+      - name: Usar un secret sin exponerlo
+        run: echo "Mi secret configurado es: ${{ secrets.WORKSHOP_SECRET }}"
